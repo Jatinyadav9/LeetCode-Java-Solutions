@@ -1,0 +1,19 @@
+class Solution {
+    public int wateringPlants(int[] plants, int capacity) {
+        int steps=0;
+        int temp=capacity;
+        for(int i=0;i<plants.length;i++){//loop through the plant array
+                if(capacity-plants[i]>=0){ //check if the subtracted(Watered plant) value is greater than or equal to zero and increment the steps
+                    steps++;
+                    capacity-=plants[i];//keep subtracting  the plant ith element from total capacity until the condition satisfies
+                }
+                else{
+                    steps+=i; //go back to the river and fetch the water
+                    capacity=temp;//restore the capacity
+                    steps+=i+1;//come back to the original position and water the plant
+                    capacity-=plants[i];
+                }
+        }
+        return steps;//return the steps
+    }
+}
